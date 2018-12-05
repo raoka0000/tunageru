@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using UnityEngine;
 
 public static class StringExtensions{
 
@@ -30,5 +31,22 @@ public static class StringExtensions{
     public static string[] SplitSpace(this string str){
         return str.Split(new char[0], StringSplitOptions.RemoveEmptyEntries);
     }
+
+    public static Color ToColor(this string str){
+        var color = default(Color);
+        if (!ColorUtility.TryParseHtmlString(str, out color)){
+            Debug.LogWarning("Unknown color code... " + str);
+        }
+        return color;
+    }
+
+    public static bool IsPresent(this string str){
+        return str.IsBlank();
+    }
+
+    public static bool IsBlank(this string str){
+        return string.IsNullOrEmpty(str);
+    }
+
 
 }

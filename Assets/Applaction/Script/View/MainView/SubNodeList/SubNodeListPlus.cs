@@ -14,6 +14,7 @@ public class SubNodeListPlus : MonoBehaviour {
     }
 
     public SubNodeListPlusUnit AddUnit(SubNodeParameter parameter){
+        parameter.canOutput = false;
         return SubNodeListPlusUnit.Instantiate(MainViweModel.instance.SubNodeListPlusUnitPrefab, window.gameObject, parameter, subNodeComponent);
     }
 

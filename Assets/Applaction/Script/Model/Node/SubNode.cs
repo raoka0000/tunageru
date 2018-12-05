@@ -13,7 +13,15 @@ public class SubNode : Node{
     }
 
     public SubNode Clone(){
-        return (SubNode)MemberwiseClone();
+        return new SubNode(this.nodeText);
+    }
+
+    protected override string getValue(){
+        string outText = base.getValue();
+        foreach (Parameter p in parameters){
+            outText = outText.Replace(p.Tag, "");
+        }
+        return outText;
     }
 
 }

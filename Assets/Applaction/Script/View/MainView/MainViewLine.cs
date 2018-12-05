@@ -22,6 +22,10 @@ public class MainViewLine : MonoBehaviour{
 
     //無駄多いのでのちに修正
     private void OnGUI(){
+        if(startRect == null || endRect==null){
+            LineViewModel.instance.RemoveLine(this);
+            return;
+        }
         lineRect.localPosition = startRect.localPosition;
         float a = endRect.localPosition.x - startRect.localPosition.x;
         float b = endRect.localPosition.y - startRect.localPosition.y;
@@ -32,8 +36,4 @@ public class MainViewLine : MonoBehaviour{
         lineRect.localRotation = Quaternion.Euler(0, 0, radian * Mathf.Rad2Deg);
     }
 
-    // Update is called once per frame
-    void Update(){
-
-    }
 }

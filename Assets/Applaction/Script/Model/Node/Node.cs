@@ -9,13 +9,20 @@ abstract public class Node{
     public string iconName;
     public string text;
     public string data;
+    public string color;
+    public bool   optional = false;
     public string Value { get { return getValue(); } }
     public List<Parameter> parameters;
 
+    public string nodeText = "";
+
     public Node(string nodeText){
-        this.title = nodeText.Between("[<title>]", "[/<title>]").Trim();
+        this.title    = nodeText.Between("[<title>]", "[/<title>]").Trim();
         this.iconName = nodeText.Between("[<icon>]", "[/<icon>]").Trim();
-        this.text = nodeText.Between("[<text>]", "[/<text>]").Trim('\n');
+        this.color    = nodeText.Between("[<color>]", "[/<color>]").Trim();
+        this.text     = nodeText.Between("[<text>]", "[/<text>]").Trim('\n');
+        this.optional = nodeText.Contains("[<optional>]");
+
         string dataFileName = nodeText.Between("[<fdata>]", "[/<fdata>]").Trim();
         if (dataFileName != ""){
             this.data = Import.ReadFile(dataFileName);
@@ -24,6 +31,8 @@ abstract public class Node{
         }
         string pramText = nodeText.Between("[<pram>]", "[/<pram>]").Trim('\n');
         this.parameters = ParameterCreator.GetParameters(pramText);
+
+        this.nodeText = nodeText;
     }
 
     protected virtual string getValue(){

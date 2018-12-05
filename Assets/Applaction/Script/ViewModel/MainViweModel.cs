@@ -11,7 +11,7 @@ public class MainViweModel : SingletonMonoBehaviour<MainViweModel>{
     public BaseNode baseNode;
     public GameObject windowViewObject;
 
-    //どうにかしてぇ....
+    //どうにかして
     public GameObject NodeWindowPrefab{ get { return nodeWindowPrefab.gameObject; }}
     public GameObject SubNodeListComponentPrefab { get { return subNodeListComponentPrefab.gameObject; } }
     public GameObject SubNodeListComponentUnitPrefab { get { return subNodeListComponentUnitPrefab.gameObject; } }
@@ -42,7 +42,7 @@ public class MainViweModel : SingletonMonoBehaviour<MainViweModel>{
         var obj = NodeWindow.Instantiate(NodeWindowPrefab, windowViewObject, node);
         nodeWindowList.Add(obj);
         if(isOpen == false){
-            obj.Close();
+            //obj.Close();
         }
         //親ウインドウがある時は位置を調整する。
         if (parentWindow != null){
@@ -52,11 +52,24 @@ public class MainViweModel : SingletonMonoBehaviour<MainViweModel>{
             int a = obj.parentWindow.childWindows.Count;
             int b = (a % 2 == 0) ? -1:1;
             int x = a / 2 * b;
-            objTrans.anchoredPosition = new Vector2(prentTrans.anchoredPosition.x + x * 200, prentTrans.anchoredPosition.y - prentTrans.sizeDelta.y - 50);
+            objTrans.anchoredPosition = new Vector2(prentTrans.anchoredPosition.x + x * 600, prentTrans.anchoredPosition.y - prentTrans.sizeDelta.y - 150);
             LineViewModel.instance.AddLine(prentTrans, objTrans);
         }
 
         return obj;
+    }
+
+    public bool RemoveWindow(Node node){
+        NodeWindow n = this.SearchWindow(node);
+        if(n != null){
+            if(n.parentWindow != null){
+                n.parentWindow.childWindows.Remove(n);
+            }
+            nodeWindowList.Remove(n);
+            Destroy(n.gameObject);
+            return true;
+        }
+        return false;
     }
 
     public NodeWindow SearchWindow(Node node){

@@ -20,4 +20,12 @@ public class LineViewModel : SingletonMonoBehaviour<LineViewModel>{
         return line;
     }
 
+    public bool RemoveLine(MainViewLine line){
+        var b = this.lines.Remove(line);
+        if(b){
+            Destroy(line.gameObject);
+        }
+        return b;
+    }
+
 }

@@ -32,14 +32,19 @@ public class SubNodeListComponentUnit : MonoBehaviour{
     }
 
     public void Pushed(){
-        //SubNodeListComponent comp = this.transform.parent.GetComponent<SubNodeListComponent>();
-        //MainViweModel.instance.AddWindow(node, false, comp.prentWindow);
         MainViweModel.instance.MoveToNodeWindow(node);
     }
 
     public void PushedRemoveBouttan(){
         this.rectTransform.DOScale(0.01f, 0.8f).SetEase(Ease.InOutElastic)
-            .OnComplete(()=>Destroy(this.gameObject));
+            .OnComplete(()=>this.Remove());
+    }
+
+    public void Remove(){
+        SubNodeListComponent subNodeList = this.transform.parent.GetComponent<SubNodeListComponent>();
+        subNodeList.subNodeListPlus.AddUnit(this.parameter);
+        MainViweModel.instance.RemoveWindow(node);
+        Destroy(this.gameObject);
     }
 
 }

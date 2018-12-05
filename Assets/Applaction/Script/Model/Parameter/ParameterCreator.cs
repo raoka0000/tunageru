@@ -15,6 +15,8 @@ public class ParameterCreator{
                 return ParameterType.dropdown;
             case "color":
                 return ParameterType.color;
+            case "nodes":
+                return ParameterType.nodes;
             default:
                 return ParameterType.none;
         }
@@ -24,7 +26,7 @@ public class ParameterCreator{
         var param = new List<Parameter>();
         string[] line = pramText.SplitLine();
         foreach(string str in line){
-            param.Add(CreateParameter(str));
+            if(str != "")param.Add(CreateParameter(str));
         }
         return param;
     }
@@ -50,6 +52,8 @@ public class ParameterCreator{
                     return new DropdownParameter(type, dic);
                 case ParameterType.color:
                     return new ColorParameter(type, dic);
+                case ParameterType.nodes:
+                    return new NodesParameter(type, dic);
             }
 
         }

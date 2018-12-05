@@ -19,6 +19,8 @@ public class NodeWindow : MonoBehaviour {
     [System.NonSerialized]
     public List<NodeWindowComponent> componentList = new List<NodeWindowComponent>();
 
+    public GameObject removeButton;
+
     public Text titleText;
     public RectTransform titleRect;
     public Text description;
@@ -36,10 +38,13 @@ public class NodeWindow : MonoBehaviour {
     public static NodeWindow Instantiate(GameObject prefab, GameObject parent, Node node){
         NodeWindow obj = Instantiate(prefab, parent.transform).GetComponent<NodeWindow>();
         obj.node = node;
-        if (node is BaseNode){
+        if (node.color != ""){
+            obj.SetColor(node.color);
+        }else if (node is BaseNode){
             obj.bg.color = obj.baseNodeColor;
             obj.bgTitle.color = obj.baseNodeColor;
         }
+        obj.removeButton.SetActive(node.optional);
         obj.titleText.text = node.title;
         obj.description.text = node.text;
         obj.icon.sprite = ImageIO.GetIcon(node.iconName);
@@ -71,6 +76,13 @@ public class NodeWindow : MonoBehaviour {
                 componentList.Add(compo);
             }
 
+            //nodes
+            if(p.type == ParameterType.nodes){
+                NodesParameter pram = p as NodesParameter;
+                var compo = SubNodeListComponent.Instantiate(MainViweModel.instance.SubNodeListComponentPrefab, contentsObject, pram.list, this);
+                componentList.Add(compo);
+                if(pram.Title != null)compo.title.text = pram.Title;
+            }
 
             //subNodeList
             if (p.type == ParameterType.subNode){
@@ -90,7 +102,6 @@ public class NodeWindow : MonoBehaviour {
         foreach(NodeWindowComponent compo in this.componentList){
             if(compo is SubNodeListComponent){
                 SubNodeListComponent snlc = compo as SubNodeListComponent;
-                DOVirtual.DelayedCall(0.1f, () => snlc.ExpandNodeWindows());
             }
         }
     }
@@ -125,9 +136,23 @@ public class NodeWindow : MonoBehaviour {
         sequence.Play();
     }
 
+    public void Remove(){
+        MainViweModel.instance.RemoveWindow(node);
+    }
+
     private void SetParentWindow(NodeWindow window){
         this._parentWindow = window;
         this._parentWindow.childWindows.Add(this);
+    }
+
+    public void SetColor(string color){
+        Color c = color.ToColor();
+        this.SetColor(c);
+    }
+
+    public void SetColor(Color color){
+        this.bg.color = color;
+        this.bgTitle.color = color;
     }
 
 }

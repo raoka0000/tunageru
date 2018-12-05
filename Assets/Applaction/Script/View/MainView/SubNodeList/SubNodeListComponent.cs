@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class SubNodeListComponent : NodeWindowComponent{
     private List<SubNodeParameter> parameters;
     [System.NonSerialized]
     public NodeWindow prentWindow;
 
+    [System.NonSerialized]
     public List<SubNodeListComponentUnit> unitList = new List<SubNodeListComponentUnit>();
 
     private SubNodeListPlus _subNodeListPlus;
@@ -19,7 +22,9 @@ public class SubNodeListComponent : NodeWindowComponent{
         }
     }
 
-    public static SubNodeListComponent Instantiate(GameObject prefab, GameObject parent, List<SubNodeParameter> parameters, NodeWindow prentWindow){
+    public Text title;
+
+    public static SubNodeListComponent Instantiate(GameObject prefab, GameObject parent,List<SubNodeParameter> parameters, NodeWindow prentWindow){
         SubNodeListComponent obj = Instantiate(prefab, parent.transform).GetComponent<SubNodeListComponent>();
         obj.prentWindow = prentWindow;
         obj.parameters = parameters;
@@ -39,13 +44,14 @@ public class SubNodeListComponent : NodeWindowComponent{
     }
 
     public SubNodeListComponentUnit AddUnit(SubNodeParameter parameter){
-        return SubNodeListComponentUnit.Instantiate(MainViweModel.instance.SubNodeListComponentUnitPrefab, this.gameObject, parameter);
+        SubNodeParameter p = parameter;
+        p.canOutput = true;
+        this.AddNodeWindow(p);
+        return SubNodeListComponentUnit.Instantiate(MainViweModel.instance.SubNodeListComponentUnitPrefab, this.gameObject, p);
     }
 
-    public void ExpandNodeWindows(){
-        foreach (SubNodeParameter p in this.parameters){
-            MainViweModel.instance.AddWindow(p.subNode, false, prentWindow);
-        }
-    }
 
+    public void AddNodeWindow(SubNodeParameter p){
+        DOVirtual.DelayedCall(0.1f, () => MainViweModel.instance.AddWindow(p.subNode, false, prentWindow));
+    }
 }

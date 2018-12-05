@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 public enum ParameterType{
-    none, subNode, number, sentence, dropdown, color
+    none, subNode, number, sentence, dropdown, color,nodes
 }
 
 
@@ -21,6 +21,11 @@ public class Parameter{
         if (dic.ContainsKey("value")) this.Value = dic["value"];
         if (dic.ContainsKey("title")) this.Title = dic["title"];
     }
+
+    public Parameter Clone(){
+        return (Parameter)MemberwiseClone();
+    }
+
 
     protected virtual string GetValue(){
         return this.value;

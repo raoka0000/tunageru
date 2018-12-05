@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class SubNodeListPlusWiondow : PopupWindowTemplate{
     public GameObject noItem;
@@ -14,5 +15,6 @@ public class SubNodeListPlusWiondow : PopupWindowTemplate{
     protected override void InEffectStartEvent(){
 
     }
+
 
 }

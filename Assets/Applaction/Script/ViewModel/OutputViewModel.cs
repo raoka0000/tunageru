@@ -12,9 +12,14 @@ public class OutputViewModel : SingletonMonoBehaviour<OutputViewModel>{
     [System.NonSerialized]
     public string OutputPath = DEFINE.OutputFilePath;
 
-    public void ShowWindow(){
+	public void Start(){
+        //this.OutputPath = MainViweModel.instance.baseNode.exportConfig.path;
+	}
+
+	public void ShowWindow(){
         if(isOpen == false && MainViweModel.instance.baseNode != null){
             this.window.InEffect();
+            this.OutputPath = MainViweModel.instance.baseNode.exportConfig.path;
         }
     }
 
@@ -27,9 +32,9 @@ public class OutputViewModel : SingletonMonoBehaviour<OutputViewModel>{
     public void Output(){
         BaseNode baseNode = MainViweModel.instance.baseNode;
         ConfirmViewModel.instance.ShowWindow(() =>{
-            Export.OutputFile(baseNode.Value, this.OutputPath, baseNode.outputFileName);
+            Export.BaseNode(baseNode);
             this.HideWiondow();
-        }, null, "出力しますか?", this.OutputPath +"/" + baseNode.outputFileName + "\nに出力します");
+        }, null, "出力しますか?", "");
         
     }
 

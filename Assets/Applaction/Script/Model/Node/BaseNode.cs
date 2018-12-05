@@ -15,18 +15,20 @@ public class BaseNode : Node{
         }
     }
 
-    public string outputFileName;
+    public ExportConfig exportConfig;
+
     public string optionText;
 
     static public BaseNode ConvertOptionText(string optionText){
         string baseNodeText = optionText.Between("[<base>]", "[/<base>]");
-        BaseNode nb = new BaseNode(optionText, baseNodeText);
+        string exportConfigText = optionText.Between("[<config>]", "[/<config>]");
+        BaseNode nb = new BaseNode(optionText, baseNodeText, exportConfigText);
         return nb;
     }
 
-    protected BaseNode(string optionText, string nodeText) : base(nodeText){
+    protected BaseNode(string optionText, string nodeText, string exportConfigText) : base(nodeText){
+        this.exportConfig = new ExportConfig(exportConfigText);
         this.optionText = optionText;
-        this.outputFileName = nodeText.Between("[<faileName>]", "[/<faileName>]");
         BaseNode.activeBaseNode = this;
     }
 
