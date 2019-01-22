@@ -32,7 +32,7 @@ public class MainViewLine : MonoBehaviour{
         float c = Mathf.Sqrt(a * a + b * b);
         float radian = Mathf.Atan2(b, a);
 
-        lineRect.sizeDelta = new Vector2(c, 2);
+        lineRect.sizeDelta = new Vector2(c, LineViewModel.instance.lineSize);
         lineRect.localRotation = Quaternion.Euler(0, 0, radian * Mathf.Rad2Deg);
     }
 

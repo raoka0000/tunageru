@@ -27,6 +27,7 @@ public class BaseNode : Node{
     }
 
     protected BaseNode(string optionText, string nodeText, string exportConfigText) : base(nodeText){
+        this.tag = "base";
         this.exportConfig = new ExportConfig(exportConfigText);
         this.optionText = optionText;
         BaseNode.activeBaseNode = this;

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system>
+<program id="061b655a0c0d408c834547c7bf0fc479">
+<object boxClass="input" boxID="0" gui="choice" icon="time.png" name="Time" nextBox="1" operation="single;15/24" option=" , " place="" places="" set="single;textField/2/text/:/text,range;textField/2/text/:/text/ ~ /text/:/text" x="586.0" y="90.0"/>
+<object boxClass="output" boxID="1" gui="choice" icon="screen.png" name="screen" nextBox="" operation="down" option=" , " place="" places="" set="up,down" x="467.0" y="351.0"/>
+</program>
+</system>

@@ -15,6 +15,13 @@ public class DebugTest : MonoBehaviour {
     }
 
     public void test(){
-        ConfirmViewModel.instance.ShowWindow(() => Debug.Log("OK"), () => Debug.Log("NO"), "タイトルです", "てすとてすとてすと");
+        //ConfirmViewModel.instance.ShowWindow(() => Debug.Log("OK"), () => Debug.Log("NO"), "タイトルです", "てすとてすとてすと");
+        //TunagumIO.LoadFromPath();
+
+        //BaseBox bb = TunagumIO.LoadBaseBox();
+        string optionText = Import.ReadFile(DEFINE.OptionFileName);
+        var bb = BaseBox.ConvertOptionText(optionText);
+
+        BoxViewModel.instance.SetBaseBox(bb);
     }
 }

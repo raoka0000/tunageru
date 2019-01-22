@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 
 
 abstract public class Node{
+    public string tag;
     public string title;
     public string iconName;
     public string text;
@@ -14,9 +15,14 @@ abstract public class Node{
     public string Value { get { return getValue(); } }
     public List<Parameter> parameters;
 
+
+    public List<Node> parentNode = new List<Node>();
+    public List<Node> childNode = new List<Node>();
+
     public string nodeText = "";
 
     public Node(string nodeText){
+        this.tag      = nodeText.Between("[<tag>]", "[/<tag>]").Trim();
         this.title    = nodeText.Between("[<title>]", "[/<title>]").Trim();
         this.iconName = nodeText.Between("[<icon>]", "[/<icon>]").Trim();
         this.color    = nodeText.Between("[<color>]", "[/<color>]").Trim();

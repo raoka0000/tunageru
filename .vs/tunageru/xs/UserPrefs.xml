@@ -1,29 +1,20 @@
 ﻿<Properties StartupConfiguration="{C46015F6-CF02-9E29-5632-654FC5594AE3}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Applaction/Script/IO/ConnectWebSocket.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Applaction/Script/ViewModel/OutputViewModel.cs">
     <Files>
-      <File FileName="Assets/Applaction/Script/PositionSync.cs" Line="83" Column="2" />
-      <File FileName="Assets/Applaction/Script/IO/ConnectWebSocket.cs" Line="1" Column="1" />
+      <File FileName="Assets/Applaction/Script/View/BoxView/BoxWindow/BoxWindow.cs" Line="24" Column="27" />
+      <File FileName="Assets/Applaction/Script/ViewModel/BoxViewModel.cs" Line="13" Column="16" />
+      <File FileName="Assets/Applaction/Script/Model/Box/BaseBox.cs" Line="11" Column="26" />
+      <File FileName="Assets/Applaction/Script/View/BoxPaletteView/BoxPaletteMaterial.cs" Line="9" Column="5" />
+      <File FileName="Assets/Applaction/Script/ViewModel/BoxPaletteViewModel.cs" Line="37" Column="53" />
+      <File FileName="Assets/Applaction/Script/View/BoxPaletteView/BoxPaletteCategory.cs" Line="29" Column="17" />
+      <File FileName="Assets/Applaction/Script/View/BoxView/BoxComponent/BoxViewComponent.cs" Line="12" Column="5" />
+      <File FileName="Assets/Applaction/Script/DEFINE/DEFINE.cs" Line="3" Column="86" />
+      <File FileName="Assets/Applaction/Script/View/ConfirmWindowView/ConfirmWindow.cs" Line="7" Column="44" />
+      <File FileName="Assets/Applaction/Script/View/OutputWindowView/OutputWindow.cs" Line="6" Column="1" />
+      <File FileName="Assets/Applaction/Script/View/OutputWindowView/OutputPathInputFieldComponent.cs" Line="17" Column="51" />
+      <File FileName="Assets/Applaction/Script/ViewModel/OutputViewModel.cs" Line="22" Column="53" />
+      <File FileName="Assets/Applaction/Script/ViewModel/ConfirmViewModel.cs" Line="15" Column="27" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="tunageru" expanded="True">
-            <Node name="Assets" expanded="True">
-              <Node name="Applaction" expanded="True">
-                <Node name="Script" expanded="True">
-                  <Node name="IO" expanded="True">
-                    <Node name="ConnectWebSocket.cs" selected="True" />
-                  </Node>
-                  <Node name="Model" expanded="True">
-                    <Node name="Parameter" expanded="True" />
-                  </Node>
-                </Node>
-              </Node>
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

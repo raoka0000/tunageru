@@ -41,7 +41,7 @@ public static class StringExtensions{
     }
 
     public static bool IsPresent(this string str){
-        return str.IsBlank();
+        return !str.IsBlank();
     }
 
     public static bool IsBlank(this string str){

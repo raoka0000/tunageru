@@ -30,8 +30,7 @@ public class DragAttribute : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
 
 
-    public void OnDrag(PointerEventData eventData)
-    {
+    public void OnDrag(PointerEventData eventData){
         myRect.position += new Vector3(eventData.delta.x, eventData.delta.y, 0f);
     }
 
