@@ -8,6 +8,8 @@ using UnityEngine;
 public class DebugTest : MonoBehaviour {
     BaseNode baseNode;
     public SidelistViewModel sidelist;
+    public TextAsset input;
+
 
     public void Start(){
         this.baseNode = Import.LoadBaseNode();
@@ -19,9 +21,13 @@ public class DebugTest : MonoBehaviour {
         //TunagumIO.LoadFromPath();
 
         //BaseBox bb = TunagumIO.LoadBaseBox();
-        string optionText = Import.ReadFile(DEFINE.OptionFileName);
-        var bb = BaseBox.ConvertOptionText(optionText);
+        //string optionText = Import.ReadFile(DEFINE.OptionFileName);
+        //var bb = BaseBox.ConvertOptionText(optionText);
+        var bb = BaseBox.ConvertOptionText(input.text);
 
         BoxViewModel.instance.SetBaseBox(bb);
     }
+
+
+
 }

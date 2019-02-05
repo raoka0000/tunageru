@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 
 public enum ContentType{
-    none, box, boxes, number, text, dropdown,radio,toggle, color,id,nextid,programId
+    none, box, boxes, number, text, dropdown,radio,toggle,color,sider,id,nextid,programId
 }
 
 

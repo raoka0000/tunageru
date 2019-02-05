@@ -13,11 +13,15 @@ public class BoxWindow : MonoBehaviour {
     private Vector2 bigSize = new Vector2(500, 150);
 
     public Box box { get; set; }
+    //public ReactiveProperty<Box> box { get; set; }
+
     /*
     private BoxWindow _parentWindow;
     public BoxWindow parentWindow { get { return _parentWindow; } set { SetParentWindow(value); } }
     [System.NonSerialized]
     public List<BoxWindow> childWindows = new List<BoxWindow>();*/
+
+    public RectTransform rectTransform;
 
     public GameObject removeButton;
 
@@ -29,6 +33,8 @@ public class BoxWindow : MonoBehaviour {
     public RectTransform maskReact;
     public Image bg;
     public Image bgTitle;
+
+    public GameObject Connector;
 
     public RectTransform lineAnchorParent;
     public RectTransform lineAnchorChild;
@@ -44,8 +50,13 @@ public class BoxWindow : MonoBehaviour {
 
     private Color defaultColor = new Color(1, 1, 1);
 
+    public DragShakeAttribute dragAttribute;
 
-    public static BoxWindow Instantiate(GameObject prefab, GameObject parent, Box box){
+
+    public BoxCollider2D boxCollider;
+
+
+	public static BoxWindow Instantiate(GameObject prefab, GameObject parent, Box box){
         BoxWindow obj = Instantiate(prefab, parent.transform).GetComponent<BoxWindow>();
         obj.box = box;
         if (box.color != ""){
@@ -74,7 +85,8 @@ public class BoxWindow : MonoBehaviour {
         obj.box.parentBox
            .ObserveRemove()
            .Subscribe(x => obj.DisconnectLine(x.Value));
-
+        
+        obj.HideConnector();
 
         return obj;
     }
@@ -114,8 +126,19 @@ public class BoxWindow : MonoBehaviour {
     }
 
 
+    public void HideConnector(){
+        this.Connector.SetActive(false);
+    }
+
+    public void ShowConnector(){
+        this.Connector.SetActive(true);
+    }
+
+
     public void Start(){
-        
+        this.rectTransform
+            .ObserveEveryValueChanged(arg1 => arg1.rect)
+            .Subscribe(_ => ChangedMaskReact());
     }
 
 
@@ -126,6 +149,10 @@ public class BoxWindow : MonoBehaviour {
         else{
             Open();
         }
+    }
+
+    private void ChangedMaskReact(){
+        this.boxCollider.size = new Vector2(rectTransform.rect.width, rectTransform.rect.height);
     }
 
 
@@ -151,10 +178,22 @@ public class BoxWindow : MonoBehaviour {
 
     public void Remove(){
         if(this.box == null){
-            Destroy(gameObject);
+            RemoveAnime();
         }else{
             BoxViewModel.instance.RemoveBox(this.box);
+            RemoveAnime();
         }
+    }
+
+    public void RemoveAnime(){
+        Sequence sequence = DOTween.Sequence();
+        sizeFitter.enabled = false;
+        this.bigSize = maskReact.sizeDelta;
+        var titlePos = new Vector2(smallSize.x / 2 + 20, -24);
+        sequence.Join(titleRect.DOSizeDelta(new Vector2(0,0), animationTime * 1.2f).SetEase(Ease.InElastic))
+                .Join(maskReact.DOSizeDelta(new Vector2(0,0), animationTime).SetEase(Ease.InOutBack))
+                .OnComplete(() => Destroy(this.gameObject));
+        sequence.Play();
     }
 
     /*private void SetParentWindow(BoxWindow window){
@@ -186,4 +225,15 @@ public class BoxWindow : MonoBehaviour {
     public void OnDrop(){
         BoxViewModel.instance.ConnectDrop(this.box);
     }
+
+
+    void OnTriggerEnter2D(Collider2D other){
+        if(other.tag == "box"){
+            BoxWindow bw = other.GetComponent<BoxWindow>();
+            if(bw != null && bw.dragAttribute.isDraging && this.dragAttribute.isDraging){
+                BoxViewModel.instance.Connect(bw.box, this.box);
+            }
+        }
+    }
+
 }

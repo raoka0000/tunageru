@@ -1,0 +1,203 @@
+[<config>]
+[<exportType>]websocket[/<exportType>]
+[<path>]localhost[/<path>]
+[<port>]8080[/<port>]
+[/<config>]
+
+[<base>]
+[<title>]ベース[/<title>]
+[<icon>]controller[/<icon>]
+[<invisible>]
+[<desc>]
+テストなんですよ
+[/<desc>]
+[<fdata>]move.js[/<fdata>]
+[<fileName>]move.js[/<fileName>]
+[<contents>]
+[type=boxes tag=<boxObject> list=@<time>@,@<door>@,@<temperature>@,@<calender>@,@<screen>@,@<DVD>@,@<twitter>@,@<aircon>@ header=TunagumH footer=TunagumF]
+[/<contents>]
+[/<base>]
+
+
+[<palette>]
+[<title>]Sensor[/<title>]
+[<material>]@<time>@[/<material>]
+[<material>]@<door>@[/<material>]
+[<material>]@<temperature>@[/<material>]
+[<material>]@<calender>@[/<material>]
+[/<palette>]
+
+
+
+[<palette>]
+[<title>]Demo[/<title>]
+[<material>]@<screen>@[/<material>]
+[<material>]@<DVD>@[/<material>]
+[<material>]@<twitter>@[/<material>]
+[<material>]@<aircon>@[/<material>]
+[/<palette>]
+
+
+[<box>]
+[<title>]Time[/<title>]
+[<tag>]@<time>@[/<tag>]
+[<icon>]clock[/<icon>]
+[<optional>]
+[<color>]#CCCCFF[/<color>]
+[<desc>]
+時間によって発生するイベント
+[/<desc>]
+[<optional>]
+[<contents>]
+[type=id tag=<id>]
+[type=nextid tag=<nextid>]
+[type=boxes tag=<boxObject> list=@<time>@,@<door>@,@<temperature>@,@<calender>@,@<screen>@,@<DVD>@,@<twitter>@,@<aircon>@]
+[/<contents>]
+[<data>]
+<object boxClass="input" boxID="<id>" gui="choice" icon="time.png" name="Time" nextBox="<nextid>" operation="single;15/24" option=" , " place="" places="" set="single;textField/2/text/:/text,range;textField/2/text/:/text/ ~ /text/:/text" x="586.0" y="90.0"/>
+<boxObject>
+[/<data>]
+[/<box>]
+
+[<box>]
+[<title>]Door[/<title>]
+[<tag>]@<door>@[/<tag>]
+[<icon>]door[/<icon>]
+[<color>]#CCCCFF[/<color>]
+[<optional>]
+[<desc>]
+ドアの開閉によって発生するイベント
+[/<desc>]
+[<contents>]
+[type=id tag=<id>]
+[type=nextid tag=<nextid>]
+[type=boxes tag=<boxObject> list=@<time>@,@<door>@,@<temperature>@,@<calender>@,@<screen>@,@<DVD>@,@<twitter>@,@<aircon>@]
+[type=radio tag=<null> title=開閉 list=オプーン,クローズ desc=ドアが開くときか閉じる時か]
+[type=radio tag=<null> title=場所 list=リビング,エントランス,ベットルーム,バスルーム desc=ドアの場所]
+[/<contents>]
+[<data>]
+<object boxClass="output" boxID="<id>" gui="choice" icon="door.png" name="door" nextBox="<nextid>" operation="" option=" , " place="" places="" set="play pause,stop" x="509.0" y="506.0"/>
+<boxObject>
+[/<data>]
+[/<box>]
+
+[<box>]
+[<title>]Temperature[/<title>]
+[<tag>]@<temperature>@[/<tag>]
+[<icon>]temperature[/<icon>]
+[<color>]#CCCCFF[/<color>]
+[<optional>]
+[<desc>]
+温度によって発生するイベント
+[/<desc>]
+[<optional>]
+[<contents>]
+[type=id tag=<id>]
+[type=nextid tag=<nextid>]
+[type=boxes tag=<boxObject> list=@<time>@,@<door>@,@<temperature>@,@<calender>@,@<screen>@,@<DVD>@,@<twitter>@,@<aircon>@]
+[/<contents>]
+[<data>]
+<object boxClass="output" boxID="<id>" gui="choice" icon="door.png" name="door" nextBox="<nextid>" operation="" option=" , " place="" places="" set="play pause,stop" x="509.0" y="506.0"/>
+<boxObject>
+[/<data>]
+[/<box>]
+
+[<box>]
+[<title>]calender[/<title>]
+[<tag>]@<calender>@[/<tag>]
+[<icon>]calender[/<icon>]
+[<color>]#CCCCFF[/<color>]
+[<optional>]
+[<desc>]
+日付によって発生するイベント
+[/<desc>]
+[<optional>]
+[<contents>]
+[type=id tag=<id>]
+[type=nextid tag=<nextid>]
+[type=boxes tag=<boxObject> list=@<time>@,@<door>@,@<temperature>@,@<calender>@,@<screen>@,@<DVD>@,@<twitter>@,@<aircon>@]
+[type=number tag=<xx> title=縦方向の速さ value=2]
+[type=radio tag=<yv> title=縦方向の速さ list=@<time>@,@<door>@,@<temperature>@,@<calender>@,@<screen>@,@<DVD>@,@<twitter>@,@<aircon>@]
+[/<contents>]
+[<data>]
+<object boxClass="output" boxID="<id>" gui="choice" icon="door.png" name="door" nextBox="<nextid>" operation="" option=" , " place="" places="" set="play pause,stop" x="509.0" y="506.0"/>
+<boxObject>
+[/<data>]
+[/<box>]
+
+
+[<box>]
+[<title>]Screen[/<title>]
+[<tag>]@<screen>@[/<tag>]
+[<icon>]screen[/<icon>]
+[<optional>]
+[<desc>]
+テレビの設定
+[/<desc>]
+[<optional>]
+[<contents>]
+[type=id tag=<id>]
+[type=nextid tag=<nextid>]
+[type=toggle tag=<none> title=ON/OFF value=on desc=テレビをONにするかOFFにするか]
+[type=number tag=<channel> title=チャンネル value=12]
+[/<contents>]
+[<data>]
+<object boxClass="output" boxID="<id>" gui="choice" icon="screen.png" name="screen" nextBox="<nextid>" operation="down" option=" , " place="" places="" set="up,down" x="467.0" y="351.0"/>
+[/<data>]
+[/<box>]
+
+[<box>]
+[<title>]DVD[/<title>]
+[<tag>]@<DVD>@[/<tag>]
+[<icon>]dvd[/<icon>]
+[<optional>]
+[<desc>]
+dvdの設定
+[/<desc>]
+[<optional>]
+[<contents>]
+[type=id tag=<id>]
+[type=nextid tag=<nextid>]
+[/<contents>]
+[<data>]
+<object boxClass="output" boxID="<id>" gui="choice" icon="dvd.png" name="DVD" nextBox="<nextid>" operation="" option=" , " place="" places="" set="play pause,stop" x="509.0" y="506.0"/>
+[/<data>]
+[/<box>]
+
+[<box>]
+[<title>]Twitter[/<title>]
+[<tag>]@<twitter>@[/<tag>]
+[<icon>]twitter[/<icon>]
+[<optional>]
+[<desc>]
+dvdの設定
+[/<desc>]
+[<optional>]
+[<contents>]
+[type=id tag=<id>]
+[type=nextid tag=<nextid>]
+[/<contents>]
+[<data>]
+<object boxClass="output" boxID="<id>" gui="choice" icon="dvd.png" name="DVD" nextBox="<nextid>" operation="" option=" , " place="" places="" set="play pause,stop" x="509.0" y="506.0"/>
+[/<data>]
+[/<box>]
+
+[<box>]
+[<title>]Aircon[/<title>]
+[<tag>]@<aircon>@[/<tag>]
+[<icon>]aircon[/<icon>]
+[<optional>]
+[<desc>]
+エアコンの設定
+[/<desc>]
+[<optional>]
+[<contents>]
+[type=id tag=<id>]
+[type=nextid tag=<nextid>]
+[/<contents>]
+[<data>]
+<object boxClass="output" boxID="<id>" gui="choice" icon="dvd.png" name="DVD" nextBox="<nextid>" operation="" option=" , " place="" places="" set="play pause,stop" x="509.0" y="506.0"/>
+[/<data>]
+[/<box>]
+
+

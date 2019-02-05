@@ -29,6 +29,7 @@ public class BoxViewModel : SingletonMonoBehaviour<BoxViewModel> {
     public mode currentMode = mode.nomal;
     public enum mode{
         nomal,
+        connectAll,
         connectPrent,
         connectchild
     }
@@ -84,7 +85,7 @@ public class BoxViewModel : SingletonMonoBehaviour<BoxViewModel> {
     private void RemoveWindow(Box box){
         var win = SearchBoxWindow(box);
         boxWindows.Remove(win);
-        Destroy(win.gameObject);
+        win.RemoveAnime();
     }
 
     public void AddBox(Box box){
@@ -146,6 +147,14 @@ public class BoxViewModel : SingletonMonoBehaviour<BoxViewModel> {
             if(currentConnectBox.adaptBoxTags.Contains(box.tag)){
                 currentConnectBox.AddChildBox(box);
             }
+        }
+    }
+
+    public void Connect(Box abox, Box bbox){
+        if (abox.adaptBoxTags.Contains(bbox.tag)){
+            abox.AddChildBox(bbox);
+        }else if (bbox.adaptBoxTags.Contains(abox.tag)){
+            bbox.AddChildBox(abox);
         }
     }
 
