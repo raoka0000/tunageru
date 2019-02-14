@@ -16,7 +16,7 @@ public class DragShakeAttribute : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     private float shakeTimeLimit= 1.0f;
     private float shakeLowerTimeLimit = 0.05f;
-    private int shakeThreshold = 12;
+    private int shakeThreshold = 8;
 
     private Vector3 acceleration;
     private Vector3 preAcceleration;

@@ -86,7 +86,7 @@ public class BoxWindow : MonoBehaviour {
            .ObserveRemove()
            .Subscribe(x => obj.DisconnectLine(x.Value));
         
-        obj.HideConnector();
+        //obj.HideConnector();
 
         return obj;
     }
@@ -114,8 +114,9 @@ public class BoxWindow : MonoBehaviour {
         if (win != null){
             //LineViewModel.instance.AddLine(this.lineAnchorParent, win.lineAnchorChild);
             LineViewModel.instance.AddLine(this.gameObject, win.gameObject);
+            ConnectAnime();
+            win.ConnectAnime();
         }
-
     }
 
     public void DisconnectLine(Box box){
@@ -123,6 +124,16 @@ public class BoxWindow : MonoBehaviour {
         if (win != null){
             LineViewModel.instance.RemoveLine(this.gameObject, win.gameObject);
         }
+    }
+
+    public void ConnectAnime(){
+        Sequence sequence = DOTween.Sequence();
+        sizeFitter.enabled = false;
+        var originVec = maskReact.sizeDelta;
+        sequence.Join(maskReact.DOSizeDelta(new Vector2(maskReact.rect.width+10, maskReact.rect.height+10), animationTime/2).SetEase(Ease.InElastic))
+                .Append(maskReact.DOSizeDelta(originVec, animationTime/2).SetEase(Ease.OutElastic))
+                .OnComplete(() => { if(isOpen == true)sizeFitter.enabled = true; });
+        sequence.Play();
     }
 
 
@@ -152,7 +163,7 @@ public class BoxWindow : MonoBehaviour {
     }
 
     private void ChangedMaskReact(){
-        this.boxCollider.size = new Vector2(rectTransform.rect.width, rectTransform.rect.height);
+        this.boxCollider.size = new Vector2(rectTransform.rect.width + 20, rectTransform.rect.height + 20);
     }
 
 
@@ -185,7 +196,10 @@ public class BoxWindow : MonoBehaviour {
         }
     }
 
+    private bool nowRemoveAnime = false;
     public void RemoveAnime(){
+        if (nowRemoveAnime) return;
+        nowRemoveAnime = true;
         Sequence sequence = DOTween.Sequence();
         sizeFitter.enabled = false;
         this.bigSize = maskReact.sizeDelta;

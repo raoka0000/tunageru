@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class BoxPaletteMaterial : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
+public class BoxPaletteMaterial : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler {
     private Color defaultColor = new Color(0.95f, 0.95f, 0.95f);
 
     public Image icon;
@@ -25,6 +25,10 @@ public class BoxPaletteMaterial : MonoBehaviour, IBeginDragHandler, IDragHandler
             bg.color = obj.defaultColor;
         }
         return obj;
+    }
+
+    public void OnPointerClick(PointerEventData pointerEventData){
+        BoxPaletteViewModel.instance.PutBox(this);
     }
 
     public void OnPushed(){

@@ -1,21 +1,15 @@
 ﻿<Properties StartupConfiguration="{C46015F6-CF02-9E29-5632-654FC5594AE3}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Applaction/Script/IO/Import.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Applaction/Script/View/BoxView/BoxWindow/BoxWindow.cs">
     <Files>
-      <File FileName="Assets/Applaction/Script/View/BoxView/BoxWindow/BoxWindow.cs" Line="195" Column="102" />
-      <File FileName="Assets/Applaction/Script/ViewModel/BoxViewModel.cs" Line="89" Column="1" />
+      <File FileName="Assets/Applaction/Script/View/BoxView/BoxWindow/BoxWindow.cs" Line="89" Column="11" />
+      <File FileName="Assets/Applaction/Script/ViewModel/BoxViewModel.cs" Line="61" Column="49" />
       <File FileName="Assets/Applaction/Script/Model/Box/BaseBox.cs" Line="13" Column="41" />
-      <File FileName="Assets/Applaction/Script/Model/Box/Box.cs" Line="38" Column="27" />
-      <File FileName="Assets/Applaction/Script/View/Attribute/DragShakeAttribute.cs" Line="13" Column="26" />
-      <File FileName="Assets/Applaction/Script/View/Attribute/DragAttribute.cs" Line="1" Column="1" />
-      <File FileName="Assets/Applaction/Script/View/BoxPaletteView/BoxPaletteCategory.cs" Line="29" Column="17" />
-      <File FileName="Assets/Applaction/Script/View/BoxView/BoxComponent/BoxViewComponent.cs" Line="7" Column="17" />
-      <File FileName="Assets/HSVPicker/UI/ColorPicker.cs" Line="1" Column="1" />
-      <File FileName="Assets/Applaction/Script/View/MainView/Dropdown/DropdownComponent.cs" Line="1" Column="1" />
-      <File FileName="Assets/Applaction/Script/DEFINE/DEFINE.cs" Line="2" Column="39" />
-      <File FileName="Assets/Applaction/Script/DebugTest.cs" Line="21" Column="48" />
-      <File FileName="Assets/Applaction/Script/IO/Import.cs" Line="8" Column="22" />
-      <File FileName="Assets/Applaction/Resources/xml/save.xml" Line="1" Column="1" />
-      <File FileName="Assets/Applaction/Script/Model/IO/XMLController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Applaction/Script/Model/Box/Box.cs" Line="96" Column="23" />
+      <File FileName="Assets/Applaction/Script/View/Attribute/DragShakeAttribute.cs" Line="19" Column="36" />
+      <File FileName="Assets/Applaction/Script/View/Attribute/DragAttribute.cs" Line="13" Column="35" />
+      <File FileName="Assets/Applaction/Script/View/BoxPaletteView/BoxPaletteMaterial.cs" Line="31" Column="51" />
+      <File FileName="Assets/Applaction/Script/ViewModel/BoxPaletteViewModel.cs" Line="27" Column="1" />
+      <File FileName="Assets/Applaction/Script/DebugTest.cs" Line="28" Column="34" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
